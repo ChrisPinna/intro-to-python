@@ -30,7 +30,31 @@ print("")
 print("Function: report_long_words")
 
 def report_long_words(words):
-  pass
+  long_words = get_long_words(words)
+  formatted_long_word = format_words(long_words)
+  result = format_result(formatted_long_word)
+  return result
+
+def format_result(formatted_long_word):
+    separator = ", "
+    result = f"These words are quite long: {separator.join(formatted_long_word)}"
+    return result
+
+def format_words(long_words):
+    formatted_long_word = []
+    for word in long_words:
+      if len(word) > 15:
+        formatted_long_word.append(word[:-(len(word) - 15)] + "...")
+      else:
+        formatted_long_word.append(word)
+    return formatted_long_word
+
+def get_long_words(words):
+    long_words = []
+    for word in words:
+      if len(word) >= 10 and word.count("-") == 0:
+        long_words.append(word)
+    return long_words
 
 check_that_these_are_equal(
   report_long_words([
